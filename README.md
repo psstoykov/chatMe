@@ -11,3 +11,12 @@
 
 -   [x] initialize firebaseapp
 -   [x] connect app with react and deploy
+-   [x] move app credentials to .env
+
+## Auth
+
+-   [x] add user auth functions for firebase
+
+## Components
+
+-   [x] Header and Nav components

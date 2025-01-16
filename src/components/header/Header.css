@@ -1,0 +1,29 @@
+header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.title {
+    color: white;
+}
+h1 {
+    font-size: 7rem;
+}
+a {
+    display: flex;
+    gap: 5px;
+}
+
+.red {
+    color: #fd1d1d;
+}
+
+.blue {
+    color: #5b51d8;
+}
+.yellow {
+    color: #fcaf45;
+}
+.purple {
+    color: #833ab4;
+}

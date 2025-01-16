@@ -1,0 +1,16 @@
+nav {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    gap: 50px;
+    border-top: 1px solid #e2e5e9;
+    border-bottom: 1px solid #e2e5e9;
+}
+nav a:hover {
+    color: #0082fc;
+}
+nav a {
+    color: #e2e5e9;
+    padding: 10px;
+    font-size: 3rem;
+}
