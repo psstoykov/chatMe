@@ -8,3 +8,6 @@
 -   [x] add Browser Router
 
 ## Firebase config
+
+-   [x] initialize firebaseapp
+-   [x] connect app with react and deploy
