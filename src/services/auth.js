@@ -1,5 +1,6 @@
 import { signInWithEmailAndPassword, updateProfile, GoogleAuthProvider, signInWithPopup, sendPasswordResetEmail, updatePassword, createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebase/firebaseConfig";
+import { useState } from "react";
 
 export const register = (email, password, username) => {
     createUserWithEmailAndPassword(auth, email, password).then((UserCredential) => {
@@ -16,6 +17,19 @@ export const register = (email, password, username) => {
     })
 }
 
+export const login = async (email, password) => {
+    let errors = {};
+    await signInWithEmailAndPassword(auth, email, password).then((UserCredential) => {
+        return UserCredential.user
+    }).catch((error) => {
+
+        return errors = {
+            errorCode: error.code,
+            errorMessage: error.message
+        }
+    })
+
+}
 export const signInWithGoogle = async () => {
     const provider = new GoogleAuthProvider();
     const result = await signInWithPopup(auth, provider);

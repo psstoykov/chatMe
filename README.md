@@ -21,3 +21,10 @@
 
 -   [x] Header and Nav components
 -   [x] Register component
+-   [x] Login component
+-   [x] Protected component
+
+# Router
+
+-   [x] implement protected Route
+-   [x] implement catch random url

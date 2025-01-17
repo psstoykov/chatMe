@@ -53,7 +53,7 @@ function Register() {
 
     return (
         <div className="register-form">
-            {setErrors && <h4 className="errors">{errors}</h4>}
+            {errors && <h4 className="errors">{errors}</h4>}
             {/* TODO expand the error handling */}
             <form onSubmit={handleSubmit}>
                 <input
