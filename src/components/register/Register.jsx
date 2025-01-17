@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import "./Register.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { register } from "../../services/auth";
 
 function Register() {
+    const navigate = useNavigate();
     const initialValues = {
         email: "",
         username: "",
@@ -10,6 +12,11 @@ function Register() {
         repass: "",
     };
     const [inputs, setInputs] = useState(initialValues);
+    const [isSignUpActive, setIsSignUpActive] = useState(true);
+    const [errors, setErrors] = useState(null);
+    const handleMethodChange = () => {
+        setIsSignUpActive(!isSignUpActive);
+    };
 
     const handleChange = (event) => {
         const name = event.target.name;
@@ -17,14 +24,37 @@ function Register() {
         setInputs((values) => ({ ...values, [name]: value }));
     };
 
-    const handleSubmit = async (event) => {
+    const handleSubmit = (event) => {
+        setErrors(null);
         event.preventDefault();
-        console.log(inputs);
+        if (
+            !inputs.email ||
+            !inputs.username ||
+            !inputs.password ||
+            !inputs.repass
+        ) {
+            return setErrors("All fields are required");
+        }
+        if (inputs.username.length < 3) {
+            return setErrors("username must be at least 3 characters long");
+        }
+        if (inputs.password !== inputs.repass) {
+            return setErrors("passwords must match");
+        }
+        if (inputs.password.length < 6) {
+            return setErrors("password must be at least 6 characters long");
+        }
+
+        register(inputs.email, inputs.password, inputs.username);
+        setIsSignUpActive(false);
         setInputs(initialValues);
+        navigate("/");
     };
 
     return (
         <div className="register-form">
+            {setErrors && <h4 className="errors">{errors}</h4>}
+            {/* TODO expand the error handling */}
             <form onSubmit={handleSubmit}>
                 <input
                     type="email"

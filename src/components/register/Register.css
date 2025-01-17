@@ -11,7 +11,7 @@
 .register-form::before {
     content: "Create an account";
     text-align: center;
-    font-size: 1.5rem;
+    font-size: 2rem;
     color: #242526;
 }
 form {
@@ -60,4 +60,9 @@ input {
 .guest-links p {
     font-style: italic;
     font-size: 1.2rem;
+}
+
+.errors {
+    font-size: 1.5rem;
+    color: red;
 }

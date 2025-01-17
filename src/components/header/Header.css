@@ -27,3 +27,10 @@ a {
 .purple {
     color: #833ab4;
 }
+
+.welcome-msg {
+    color: white;
+    align-self: flex-start;
+    padding-left: 20px;
+    padding-bottom: 5px;
+}

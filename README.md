@@ -20,3 +20,4 @@
 ## Components
 
 -   [x] Header and Nav components
+-   [x] Register component
