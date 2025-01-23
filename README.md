@@ -28,3 +28,5 @@
 
 -   [x] implement protected Route
 -   [x] implement catch random url
+
+on updateUsername - fix to dynamically update welcome message with new username

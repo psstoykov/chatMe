@@ -27,7 +27,11 @@ function Login() {
         }
 
         const result = await login(inputs.email, inputs.password);
-        console.log(result);
+
+        if (result) {
+            setErrors(result.errorMessage);
+            return;
+        }
         setIsSignInActive(false);
         setInputs(initialValues);
         navigate("/");

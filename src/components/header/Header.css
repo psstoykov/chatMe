@@ -27,3 +27,13 @@ a {
 .purple {
     color: #833ab4;
 }
+
+.welcome-msg {
+    color: white;
+    align-self: flex-start;
+    padding-left: 10px;
+    font-size: 2rem;
+}
+.welcome-name {
+    font-style: italic;
+}

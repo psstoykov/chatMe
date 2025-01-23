@@ -1,8 +1,16 @@
 import "./Header.css";
 import Navigation from "../nav/Navigation";
 import { Link } from "react-router-dom";
+import { useAuthContext } from "../../contexts/authContext";
 
 function Header() {
+    let username = "guest";
+    const user = useAuthContext();
+    console.log(user);
+    if (user) {
+        username = user.displayName;
+    }
+
     return (
         <header>
             <h1 className="title">
@@ -16,6 +24,9 @@ function Header() {
                 </Link>
             </h1>
 
+            <h2 className="welcome-msg">
+                Hello, <span className="welcome-name">{username}</span>{" "}
+            </h2>
             <Navigation />
         </header>
     );

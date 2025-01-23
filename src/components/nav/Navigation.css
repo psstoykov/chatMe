@@ -12,16 +12,5 @@ nav a:hover {
 nav a {
     color: #e2e5e9;
     padding: 10px;
-    font-size: 3rem;
-}
-
-button:hover {
-    color: #0082fc;
-}
-button {
-    border: none;
-    background-color: inherit;
-    color: #e2e5e9;
-    padding: 10px;
-    font-size: 3rem;
+    font-size: 2.5rem;
 }

@@ -24,9 +24,9 @@ function Register() {
         setInputs((values) => ({ ...values, [name]: value }));
     };
 
-    const handleSubmit = (event) => {
-        setErrors(null);
+    const handleSubmit = async (event) => {
         event.preventDefault();
+        setErrors(null);
         if (
             !inputs.email ||
             !inputs.username ||
@@ -45,7 +45,17 @@ function Register() {
             return setErrors("password must be at least 6 characters long");
         }
 
-        register(inputs.email, inputs.password, inputs.username);
+        const result = await register(
+            inputs.email,
+            inputs.password,
+            inputs.username
+        );
+
+        if (result) {
+            setErrors(result.errorMessage);
+            console.log(result.errorMessage);
+            return;
+        }
         setIsSignUpActive(false);
         setInputs(initialValues);
         navigate("/");
