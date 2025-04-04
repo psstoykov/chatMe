@@ -1,0 +1,12 @@
+.users-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+li {
+    color: white;
+    font-size: 2rem;
+    border: 1px solid white;
+    max-width: fit-content;
+    padding: 5px 30px;
+}

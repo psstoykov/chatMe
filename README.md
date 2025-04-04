@@ -16,6 +16,7 @@
 ## Auth
 
 -   [x] add user auth functions for firebase
+-   [x] implement auth Context
 
 ## Components
 

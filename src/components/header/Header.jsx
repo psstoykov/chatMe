@@ -2,14 +2,17 @@ import "./Header.css";
 import Navigation from "../nav/Navigation";
 import { Link } from "react-router-dom";
 import { useAuthContext } from "../../contexts/authContext";
+import { useState } from "react";
+import { useEffect } from "react";
 
 function Header() {
-    let username = "guest";
+    const [username, setUsername] = useState("guest");
     const user = useAuthContext();
-    console.log(user);
-    if (user) {
-        username = user.displayName;
-    }
+    //TODO fix dynamic update username
+
+    useEffect(() => {
+        user ? setUsername(user.displayName) : setUsername("guest");
+    }, [user]);
 
     return (
         <header>

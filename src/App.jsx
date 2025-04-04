@@ -8,6 +8,9 @@ import Login from "./components/login/Login";
 import { ProtectedRoute } from "./components/ProtectedRoute";
 
 import { AuthContextProvider } from "./contexts/authContext";
+import MyPage from "./components/myPage/myPage";
+import { AuthRoute } from "./components/authRoute";
+import UserList from "./components/users-list/Users";
 
 function App() {
     return (
@@ -33,7 +36,22 @@ function App() {
                             </ProtectedRoute>
                         }
                     />
-
+                    <Route
+                        path="/mypage"
+                        element={
+                            <AuthRoute>
+                                <MyPage />
+                            </AuthRoute>
+                        }
+                    />
+                    <Route
+                        path="/users"
+                        element={
+                            <AuthRoute>
+                                <UserList />
+                            </AuthRoute>
+                        }
+                    />
                     <Route path="*" element={<Navigate to={"/"} />} />
                 </Routes>
             </div>

@@ -10,7 +10,7 @@ function Login() {
         password: "",
     };
     const [inputs, setInputs] = useState(initialValues);
-    const [isSigInActive, setIsSignInActive] = useState(true);
+    // const [isSigInActive, setIsSignInActive] = useState(true);
     const [errors, setErrors] = useState(null);
 
     const handleChange = (event) => {
@@ -32,7 +32,7 @@ function Login() {
             setErrors(result.errorMessage);
             return;
         }
-        setIsSignInActive(false);
+        // setIsSignInActive(false);
         setInputs(initialValues);
         navigate("/");
     };
@@ -62,7 +62,7 @@ function Login() {
                 </button>
             </form>
             <div className="guest-links">
-                <p>Don't have an account?</p>
+                <p>Don&apos;t have an account?</p>
                 <Link to="/register">Register</Link>
             </div>
         </div>

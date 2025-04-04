@@ -8,7 +8,10 @@ function Navigation() {
     if (user) {
         return (
             <nav>
-                <Link to="/myprofile">My Profile</Link>
+                <Link to="/users">Users</Link>
+                <Link to="/messages">Messages</Link>
+
+                <Link to="/myPage">My Page</Link>
                 <Link
                     onClick={() => {
                         logout();
