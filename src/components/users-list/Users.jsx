@@ -16,7 +16,10 @@ export default function UserList() {
         <>
             <ul className="users-list">
                 {users.map((user) => (
-                    <li key={user.email}>{user.username}</li>
+                    <li key={user.email}>
+                        {user.username}
+                        <button className="msg-btn">Send a message</button>
+                    </li>
                 ))}
             </ul>
         </>

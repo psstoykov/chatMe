@@ -11,6 +11,7 @@ import { AuthContextProvider } from "./contexts/authContext";
 import MyPage from "./components/myPage/myPage";
 import { AuthRoute } from "./components/authRoute";
 import UserList from "./components/users-list/Users";
+import Messages from "./components/messages/Messages";
 
 function App() {
     return (
@@ -34,6 +35,14 @@ function App() {
                             <ProtectedRoute>
                                 <Login />
                             </ProtectedRoute>
+                        }
+                    />
+                    <Route
+                        path="/messages"
+                        element={
+                            <AuthRoute>
+                                <Messages />
+                            </AuthRoute>
                         }
                     />
                     <Route

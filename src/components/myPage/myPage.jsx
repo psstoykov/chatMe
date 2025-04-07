@@ -1,7 +1,6 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { changePassword, changeUsername } from "../../services/auth";
 import "./myPage.css";
-import { useAuthContext } from "../../contexts/authContext";
 import AccountStatus from "../account-status/Account-status";
 
 export default function MyPage() {

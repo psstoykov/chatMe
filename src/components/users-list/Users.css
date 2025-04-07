@@ -4,9 +4,17 @@
     gap: 10px;
 }
 li {
+    display: flex;
+    gap: 10px;
+    justify-content: space-evenly;
     color: white;
     font-size: 2rem;
     border: 1px solid white;
     max-width: fit-content;
     padding: 5px 30px;
+}
+
+.msg-btn {
+    background-color: inherit;
+    color: white;
 }
