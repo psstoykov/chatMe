@@ -1,7 +1,8 @@
-import { signInWithEmailAndPassword, updateProfile, GoogleAuthProvider, signInWithPopup, sendPasswordResetEmail, updatePassword, createUserWithEmailAndPassword } from "firebase/auth";
+import { signInWithEmailAndPassword, updateProfile, GoogleAuthProvider, signInWithPopup, sendPasswordResetEmail, updatePassword, createUserWithEmailAndPassword, deleteUser, getAuth } from "firebase/auth";
 import { auth } from "../firebase/firebaseConfig";
 import { setDoc, doc, updateDoc } from "firebase/firestore";
 import { db } from "../firebase/firebaseConfig";
+import { removeAccountFromDb } from "./data";
 let errors = null;
 
 export const register = (email, password, username) => {
@@ -15,9 +16,8 @@ export const register = (email, password, username) => {
         const payload = {
             email: user.email,
             username: user.displayName,
-            chats: [],
-            friends: [],
-            invites: [],
+            uid: userId
+
         };
         await setDoc(doc(db, "users", userId), payload);
         return null;
@@ -71,4 +71,15 @@ export const changeUsername = async (newUsername) => {
 
     const usernameRef = doc(db, 'users', auth.currentUser.uid);
     await updateDoc(usernameRef, { username: newUsername })
+}
+
+export const removeUser = () => {
+    const auth = getAuth()
+    const user = auth.currentUser
+    removeAccountFromDb(user.uid)
+    deleteUser(user).then(() => {
+        //User deleted.
+    }).catch((error) => {
+        return error
+    })
 }

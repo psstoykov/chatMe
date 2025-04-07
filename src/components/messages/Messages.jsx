@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useAuthContext } from "../../contexts/authContext";
 import { getMyMessages, getUserWithId } from "../../services/data";
 import "./Messages.css";
+import { Link } from "react-router-dom";
 
 function Messages() {
     const user = useAuthContext();
@@ -19,17 +20,7 @@ function Messages() {
     return (
         <>
             <h1>My Messages</h1>
-            <div className="msg-container">
-                <ul>
-                    {messages.map((msg) => {
-                        const userPromise = getUserWithId(msg.participant.id);
-                        userPromise.then((user) => {
-                            setParticipant(user.username);
-                        });
-                    })}
-                    <li>{participant}</li>
-                </ul>
-            </div>
+            <div className="msg-container"></div>
         </>
     );
 }
