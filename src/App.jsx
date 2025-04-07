@@ -12,6 +12,7 @@ import MyPage from "./components/myPage/myPage";
 import { AuthRoute } from "./components/authRoute";
 import UserList from "./components/users-list/Users";
 import Messages from "./components/messages/Messages";
+import Message from "./components/message/Message";
 
 function App() {
     return (
@@ -61,6 +62,15 @@ function App() {
                             </AuthRoute>
                         }
                     />
+                    <Route
+                        path="/message/:uid"
+                        element={
+                            <AuthRoute>
+                                <Message />
+                            </AuthRoute>
+                        }
+                    />
+
                     <Route path="*" element={<Navigate to={"/"} />} />
                 </Routes>
             </div>

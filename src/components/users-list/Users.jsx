@@ -2,6 +2,7 @@ import { useState } from "react";
 import "./Users.css";
 import { useEffect } from "react";
 import { getAllUsers } from "../../services/data";
+import { Link } from "react-router-dom";
 
 export default function UserList() {
     const [users, setUsers] = useState([]);
@@ -18,7 +19,9 @@ export default function UserList() {
                 {users.map((user) => (
                     <li key={user.email}>
                         {user.username}
-                        <button className="msg-btn">Send a message</button>
+                        <Link to={"/message/" + user.uid} className="msg-btn">
+                            Send a message
+                        </Link>
                     </li>
                 ))}
             </ul>

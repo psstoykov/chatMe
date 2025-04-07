@@ -20,6 +20,7 @@ export const register = (email, password, username) => {
 
         };
         await setDoc(doc(db, "users", userId), payload);
+
         return null;
     }).catch((error) => {
         return errors = {
