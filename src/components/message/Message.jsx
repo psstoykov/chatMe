@@ -1,18 +1,28 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./Message.css";
 import { useParams } from "react-router-dom";
-import { addMessage, getUserWithId } from "../../services/data";
+import { addMessage, getMessages, getUserWithId } from "../../services/data";
 import { useAuthContext } from "../../contexts/authContext";
 import { serverTimestamp } from "firebase/firestore";
+import Chat from "../chat/Chat";
+
 function Message() {
     const { uid } = useParams(); //ID of receiving party
     const user = useAuthContext();
     const ownerId = user.uid; //ID of currently logged in user
     const [participant, setParticipant] = useState(null);
     const [input, setInput] = useState("");
-    getUserWithId(uid).then((user) => {
-        setParticipant(user.username);
-    });
+    const [chat, setChat] = useState([]);
+
+    useEffect(() => {
+        getMessages(ownerId, uid).then((res) => {
+            setChat(res);
+        });
+        getUserWithId(uid).then((user) => {
+            setParticipant(user.username);
+        });
+    }, [ownerId, uid]);
+
     const handleChange = (event) => {
         setInput(event.target.value);
     };
@@ -29,12 +39,12 @@ function Message() {
         addMessage(ownerId, uid, payload);
         setInput("");
     };
+
     return (
         <>
-            <h2 className="msg-title">Texting with {participant}</h2>
-            <div className="current-chat"></div>
             <div className="new-message">
-                <form onSubmit={handleSubmit}>
+                <form className="msg-form" onSubmit={handleSubmit}>
+                    <h2 className="msg-title">Texting with {participant}</h2>
                     <input
                         type="text"
                         name="input"
@@ -47,6 +57,18 @@ function Message() {
                         Send
                     </button>
                 </form>
+            </div>
+            <div className="current-chat">
+                <ul className="msg-list">
+                    {chat.map((res) => (
+                        <Chat
+                            key={res.createdAt}
+                            sender={res.ownerId}
+                            message={res.message}
+                            createdAt={res.createdAt}
+                        />
+                    ))}
+                </ul>
             </div>
         </>
     );

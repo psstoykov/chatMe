@@ -2,13 +2,33 @@
     align-self: center;
     color: white;
     font-size: 3rem;
+    opacity: 0.8;
 }
 .send-msg-btn {
     border: none;
     background-color: #0082fc;
     padding: 10px 100px;
-    border-radius: 10px;
+    border-radius: 20px;
     color: #e2e5e9;
     font-size: 1.5rem;
     cursor: pointer;
+}
+.new-message {
+    width: 40%;
+    align-self: center;
+    height: max-content;
+}
+.msg-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding-left: 10px;
+}
+.current-chat {
+    align-self: center;
+    width: 40%;
+}
+
+.msg-form {
+    border-radius: 20px;
 }

@@ -1,4 +1,4 @@
-import { collection, doc, getDoc, getDocs, deleteDoc, addDoc } from "firebase/firestore";
+import { collection, doc, getDoc, getDocs, deleteDoc, addDoc, orderBy, where, query } from "firebase/firestore";
 import { db } from "../firebase/firebaseConfig";
 export const getAllUsers = async () => {
     const users = [];
@@ -11,25 +11,26 @@ export const getAllUsers = async () => {
     return users
 }
 
-export const getMyMessages = async (uid) => {
+export const getMessages = async (uid, friendId) => {
+
     const messages = [];
 
-
-    const querySnapshot = await getDocs(collection(db, 'users', uid, 'messages'));
+    // const querySnapshot = await getDocs((collection(db, 'users', uid, 'messages', friendId, 'content')));
+    const q = query(collection(db, 'users', uid, 'messages', friendId, 'content'), orderBy('createdAt', 'desc'));
+    const querySnapshot = await getDocs(q)
 
     querySnapshot.forEach((doc) => {
 
         messages.push(doc.data())
-        console.log(messages)
     })
+    console.log(messages)
     return messages;
 }
 
 export const addMessage = async (ownerId, friendId, payload) => {
 
-    await addDoc(collection(db, 'users', ownerId, 'messages'), payload)
-    await addDoc(collection(db, 'users', friendId, 'messages'), payload)
-    // await addDoc(collection(db, "users", ownerId, "messages", friendId, "content"), payload)
+    await addDoc(collection(db, "users", ownerId, "messages", friendId, "content"), payload)
+    await addDoc(collection(db, "users", friendId, "messages", ownerId, "content"), payload) //make a second record for the receiving party
 
 }
 

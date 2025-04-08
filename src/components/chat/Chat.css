@@ -1,0 +1,13 @@
+.owner-chat-theme {
+    background-color: #1877f2;
+    border: none;
+    border-radius: 20px;
+    align-self: flex-start;
+}
+
+.friend-chat-team {
+    background-color: #303030;
+    border: none;
+    border-radius: 20px;
+    align-self: flex-end;
+}
