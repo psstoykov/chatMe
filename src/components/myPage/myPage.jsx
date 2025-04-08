@@ -13,6 +13,7 @@ export default function MyPage() {
             return;
         }
         changeUsername(username);
+
         setUsername("");
     };
     const submitPassword = (e) => {

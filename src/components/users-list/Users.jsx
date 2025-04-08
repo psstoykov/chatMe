@@ -15,16 +15,17 @@ export default function UserList() {
 
     return (
         <>
-            <ul className="users-list">
+            <div className="users-list">
                 {users.map((user) => (
-                    <li key={user.email}>
+                    <Link
+                        key={user.email}
+                        to={"/message/" + user.uid}
+                        className="msg-btn"
+                    >
                         {user.username}
-                        <Link to={"/message/" + user.uid} className="msg-btn">
-                            Send a message
-                        </Link>
-                    </li>
+                    </Link>
                 ))}
-            </ul>
+            </div>
         </>
     );
 }

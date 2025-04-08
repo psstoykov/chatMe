@@ -3,6 +3,9 @@
     border: none;
     border-radius: 20px;
     align-self: flex-start;
+    font-size: 2rem;
+    color: white;
+    padding: 10px;
 }
 
 .friend-chat-team {
@@ -10,4 +13,7 @@
     border: none;
     border-radius: 20px;
     align-self: flex-end;
+    font-size: 2rem;
+    color: white;
+    padding: 10px;
 }

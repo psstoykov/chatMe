@@ -7,12 +7,17 @@ import { useEffect } from "react";
 
 function Header() {
     const [username, setUsername] = useState("guest");
+
     const user = useAuthContext();
-    //TODO fix dynamic update username
 
     useEffect(() => {
         user ? setUsername(user.displayName) : setUsername("guest");
     }, [user]);
+    //TODO fix dynamic update username
+
+    // useEffect(() => {
+    //     user ? setUsername(user.displayName) : setUsername("guest");
+    // }, [user]);
 
     return (
         <header>

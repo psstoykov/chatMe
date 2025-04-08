@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import "./Register.css";
 import { Link, useNavigate } from "react-router-dom";
 import { register } from "../../services/auth";
@@ -12,11 +12,8 @@ function Register() {
         repass: "",
     };
     const [inputs, setInputs] = useState(initialValues);
-    const [isSignUpActive, setIsSignUpActive] = useState(true);
+
     const [errors, setErrors] = useState(null);
-    const handleMethodChange = () => {
-        setIsSignUpActive(!isSignUpActive);
-    };
 
     const handleChange = (event) => {
         const name = event.target.name;
@@ -56,7 +53,7 @@ function Register() {
             console.log(result.errorMessage);
             return;
         }
-        setIsSignUpActive(false);
+
         setInputs(initialValues);
         navigate("/");
     };

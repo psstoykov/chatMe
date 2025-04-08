@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import "./Message.css";
 import { useParams } from "react-router-dom";
 import { addMessage, getMessages, getUserWithId } from "../../services/data";

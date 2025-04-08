@@ -16,7 +16,7 @@ const Chat = ({ sender, message, createdAt }) => {
         senderName.then((res) => {
             setSenderName(res.username);
         });
-    }, []);
+    }, [createdAt, sender]);
 
     if (sender == userId) {
         return (
