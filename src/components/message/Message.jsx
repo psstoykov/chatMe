@@ -14,14 +14,12 @@ function Message() {
     const [input, setInput] = useState("");
     const [chat, setChat] = useState([]);
 
-    useEffect(() => {
-        getMessages(ownerId, uid).then((res) => {
-            setChat(res);
-        });
-        getUserWithId(uid).then((user) => {
-            setParticipant(user.username);
-        });
-    }, [ownerId, uid]);
+    getMessages(ownerId, uid).then((res) => {
+        setChat(res);
+    });
+    getUserWithId(uid).then((user) => {
+        setParticipant(user.username);
+    });
 
     const handleChange = (event) => {
         setInput(event.target.value);

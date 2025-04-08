@@ -10,13 +10,13 @@ const Chat = ({ sender, message, createdAt }) => {
     const [chat, setChat] = useState(message);
     const [time, setTime] = useState(Date.now());
     useEffect(() => {
-        const date = new Date(createdAt.nanoseconds);
+        const date = new Date(createdAt);
         setTime(date);
         const senderName = getUserWithId(sender);
         senderName.then((res) => {
             setSenderName(res.username);
         });
-    }, [sender, chat, createdAt]);
+    }, []);
 
     if (sender == userId) {
         return (

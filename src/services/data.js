@@ -1,4 +1,4 @@
-import { collection, doc, getDoc, getDocs, deleteDoc, addDoc, orderBy, where, query } from "firebase/firestore";
+import { collection, doc, getDoc, getDocs, deleteDoc, addDoc, orderBy, query } from "firebase/firestore";
 import { db } from "../firebase/firebaseConfig";
 export const getAllUsers = async () => {
     const users = [];
@@ -23,7 +23,6 @@ export const getMessages = async (uid, friendId) => {
 
         messages.push(doc.data())
     })
-    console.log(messages)
     return messages;
 }
 
