@@ -25,6 +25,7 @@
 .user-list-title {
     color: white;
     align-self: center;
+    font-size: 5rem;
 }
 .user-list-field {
     display: flex;

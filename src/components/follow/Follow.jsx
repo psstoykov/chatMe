@@ -11,8 +11,10 @@ const Follow = ({ friendId, uid }) => {
     };
 
     const submitUnfollow = () => {
-        unfollowById(uid, friendId);
-        setIsFollower(false);
+        if (confirm("you are about to unfollow... are you sure?") == true) {
+            unfollowById(uid, friendId);
+            setIsFollower(false);
+        }
     };
     useEffect(() => {
         getFollowerById(uid, friendId).then((res) => {

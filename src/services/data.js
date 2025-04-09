@@ -1,6 +1,6 @@
 import { collection, doc, getDoc, getDocs, deleteDoc, addDoc, orderBy, query, setDoc } from "firebase/firestore";
 import { db } from "../firebase/firebaseConfig";
-import { useAuthContext } from "../contexts/authContext";
+
 
 export const getAllUsers = async () => {
     const users = [];
@@ -78,8 +78,8 @@ export const getFollowerById = async (uid, friendId) => {
 }
 
 export const followById = async (uid, friendId) => {
-    await setDoc(doc(db, 'users', uid, 'following', friendId), {})
-    await setDoc(doc(db, 'users', friendId, 'followers', uid), {})
+    await setDoc(doc(db, 'users', uid, 'following', friendId), { createdAt: Date.now(), uid: friendId })
+    await setDoc(doc(db, 'users', friendId, 'followers', uid), { createdAt: Date.now(), uid: uid })
 
 }
 
@@ -87,4 +87,13 @@ export const unfollowById = async (uid, friendId) => {
 
     await deleteDoc(doc(db, 'users', uid, 'following', friendId))
     await deleteDoc(doc(db, 'users', friendId, 'followers', uid))
+}
+
+export const getFollowStats = async (uid, follow) => {
+    const result = []
+    const querySnapshot = await getDocs(collection(db, 'users', uid, follow));
+    querySnapshot.forEach((doc) => {
+        result.push(doc.data());
+    })
+    return result
 }

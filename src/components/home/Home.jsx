@@ -2,7 +2,7 @@ import "./Home.css";
 const Home = () => {
     return (
         <>
-            <h1 className="homepage-title">Welcome to our messaging app</h1>
+            <h1 className="homepage-title">Welcome to ChatMe!</h1>
             <div className="homepage-content">
                 <h1 className="homepage-title2">
                     Here is what you can expect:

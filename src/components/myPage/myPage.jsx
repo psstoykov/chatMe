@@ -3,6 +3,8 @@ import { changePassword } from "../../services/auth";
 import "./myPage.css";
 import AccountStatus from "../account-status/Account-status";
 
+import FollowerStats from "../follower-stats/FollowerStats";
+
 export default function MyPage() {
     const initialValues = {
         password: "",
@@ -61,6 +63,7 @@ export default function MyPage() {
                         </button>
                     </form>
                 </div>
+                <FollowerStats />
                 <AccountStatus />
             </div>
         </>
