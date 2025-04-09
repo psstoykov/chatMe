@@ -7,9 +7,6 @@ function AccountStatus() {
     const user = useAuthContext();
     const navigate = useNavigate();
 
-    const timestamp = user.metadata.lastLoginAt;
-    const lastLogin = new Date(Number(timestamp)).toDateString();
-
     const deleteAccount = () => {
         if (confirm("You can NOT undo this action. Are you sure?") == true) {
             removeUser();
@@ -21,7 +18,7 @@ function AccountStatus() {
         <>
             <ul className="status-list">
                 <li>Active since: {user.metadata.creationTime}</li>
-                <li>Last Login: {lastLogin}</li>
+                <li>Last Login: {user.metadata.lastSignInTime}</li>
                 <button className="delete-account" onClick={deleteAccount}>
                     Delete Account
                 </button>

@@ -13,6 +13,7 @@ import { AuthRoute } from "./components/authRoute";
 import UserList from "./components/users-list/Users";
 
 import Message from "./components/message/Message";
+import MyMessages from "./components/myMessages/MyMessages";
 
 function App() {
     return (
@@ -44,6 +45,14 @@ function App() {
                         element={
                             <AuthRoute>
                                 <MyPage />
+                            </AuthRoute>
+                        }
+                    />
+                    <Route
+                        path="/mymessages"
+                        element={
+                            <AuthRoute>
+                                <MyMessages />
                             </AuthRoute>
                         }
                     />

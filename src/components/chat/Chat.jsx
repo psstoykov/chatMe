@@ -1,33 +1,41 @@
 import { useEffect, useState } from "react";
 import { useAuthContext } from "../../contexts/authContext";
-import { getUserWithId } from "../../services/data";
 import "./Chat.css";
 
 const Chat = ({ sender, message, createdAt }) => {
+    //TODO fix infinite loop
     const user = useAuthContext();
     const userId = user.uid;
-    const [senderName, setSenderName] = useState("");
-    const [chat, setChat] = useState(message);
-    const [time, setTime] = useState(Date.now());
-    useEffect(() => {
-        const date = new Date(createdAt);
-        setTime(date);
-        const senderName = getUserWithId(sender);
-        senderName.then((res) => {
-            setSenderName(res.username);
-        });
-    }, [createdAt, sender]);
 
-    if (sender == userId) {
+    const [senderId, setSenderId] = useState(null);
+    const [chat, setChat] = useState(null);
+    const [date, setDate] = useState(null);
+
+    useEffect(() => {
+        setSenderId(sender);
+        setChat(message);
+        setDate(new Date(createdAt));
+    }, [message]);
+
+    if (senderId == userId) {
         return (
             <>
-                <li className="owner-chat-theme">{message}</li>
+                <li className="owner-chat-theme">
+                    {chat}
+                    <p className="date-stamp">{date.toString()}</p>
+                </li>
+            </>
+        );
+    } else if (!chat) {
+        return (
+            <>
+                <li>No messages yet</li>
             </>
         );
     } else {
         return (
             <>
-                <li className="friend-chat-team">{message}</li>
+                <li className="friend-chat-team">{chat}</li>
             </>
         );
     }

@@ -1,15 +1,31 @@
-import { collection, doc, getDoc, getDocs, deleteDoc, addDoc, orderBy, query } from "firebase/firestore";
+import { collection, doc, getDoc, getDocs, deleteDoc, addDoc, orderBy, query, setDoc } from "firebase/firestore";
 import { db } from "../firebase/firebaseConfig";
+import { useAuthContext } from "../contexts/authContext";
+
 export const getAllUsers = async () => {
     const users = [];
-    // const querySnapshot = await getDocs(collection(db, 'users'));
     const q = query(collection(db, 'users'), orderBy('username', 'asc'))
     const querySnapshot = await getDocs(q)
+
     querySnapshot.forEach((doc) => {
 
         users.push(doc.data())
     })
     return users
+}
+
+export const getMyMessagesIds = async (uid) => {
+
+    const res = [];
+
+    const q = query(collection(db, 'users', uid, 'messages'), orderBy('createdAt', 'desc'));
+    const querySnapshot = await getDocs(q)
+
+    querySnapshot.forEach((doc) => {
+
+        res.push(doc.data())
+    })
+    return res;
 }
 
 export const getMessages = async (uid, friendId) => {
@@ -20,7 +36,6 @@ export const getMessages = async (uid, friendId) => {
     const querySnapshot = await getDocs(q)
 
     querySnapshot.forEach((doc) => {
-
         messages.push(doc.data())
     })
     return messages;
@@ -49,4 +64,27 @@ export const getUserWithId = async (uid) => {
 
 export const removeAccountFromDb = async (uid) => {
     await deleteDoc(doc(db, 'users', uid))
+}
+
+export const getFollowerById = async (uid, friendId) => {
+    const docRef = doc(db, 'users', uid, 'following', friendId);
+    const docSnap = await getDoc(docRef);
+
+    if (docSnap.exists()) {
+        return true
+    } else {
+        return false;
+    }
+}
+
+export const followById = async (uid, friendId) => {
+    await setDoc(doc(db, 'users', uid, 'following', friendId), {})
+    await setDoc(doc(db, 'users', friendId, 'followers', uid), {})
+
+}
+
+export const unfollowById = async (uid, friendId) => {
+
+    await deleteDoc(doc(db, 'users', uid, 'following', friendId))
+    await deleteDoc(doc(db, 'users', friendId, 'followers', uid))
 }

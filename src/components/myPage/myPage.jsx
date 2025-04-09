@@ -4,59 +4,57 @@ import "./myPage.css";
 import AccountStatus from "../account-status/Account-status";
 
 export default function MyPage() {
-    // const [username, setUsername] = useState("");
-    const [password, setPassword] = useState("");
+    const initialValues = {
+        password: "",
+        repass: "",
+    };
+    const [inputs, setInputs] = useState(initialValues);
+    const [errors, setErrors] = useState(null);
 
-    // const submitUsername = (e) => {
-    //     e.preventDefault();
-    //     if (username == "") {
-    //         return;
-    //     }
-    //     changeUsername(username);
-
-    //     setUsername("");
-    // };
     const submitPassword = (e) => {
         e.preventDefault();
-        if (password == "") {
-            return;
+        setErrors(null);
+        if (!inputs.password) {
+            return setErrors("No password found");
         }
-        changePassword(password);
-        setPassword("");
+        if (inputs.password !== inputs.repass) {
+            return setErrors("passwords must match");
+        }
+        if (inputs.password.length < 6) {
+            return setErrors("Password must be at least 6 characters long");
+        }
+        changePassword(inputs.password);
+
+        setInputs(initialValues);
     };
 
-    // const handleUsername = (event) => {
-    //     const value = event.target.value;
-    //     setUsername(value);
-    // };
     const handlePassword = (event) => {
+        const name = event.target.name;
         const value = event.target.value;
-        setPassword(value);
+        setInputs((values) => ({ ...values, [name]: value }));
     };
 
     return (
         <>
             <div className="user-container">
                 <div className="account-settings">
-                    {/* <form className="user-form" onSubmit={submitUsername}>
-                        <input
-                            type="text"
-                            name="username"
-                            onChange={handleUsername}
-                            placeholder="new username"
-                            value={username}
-                        />
-                        <button className="form-btn" type="submit">
-                            change username
-                        </button>
-                    </form> */}
                     <form className="user-form" onSubmit={submitPassword}>
+                        {errors && (
+                            <h4 className="errors-newPassword">{errors}</h4>
+                        )}
                         <input
                             type="password"
                             name="password"
                             onChange={handlePassword}
                             placeholder="new password"
-                            value={password}
+                            value={inputs.password}
+                        />
+                        <input
+                            type="password"
+                            name="repass"
+                            onChange={handlePassword}
+                            placeholder="repeat password"
+                            value={inputs.repass}
                         />
                         <button className="form-btn" type="submit">
                             change password

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./Message.css";
 import { useParams } from "react-router-dom";
 import { addMessage, getMessages, getUserWithId } from "../../services/data";
@@ -13,13 +13,16 @@ function Message() {
     const [participant, setParticipant] = useState(null);
     const [input, setInput] = useState("");
     const [chat, setChat] = useState([]);
+    const [payload, setPayload] = useState({});
 
-    getMessages(ownerId, uid).then((res) => {
-        setChat(res);
-    });
-    getUserWithId(uid).then((user) => {
-        setParticipant(user.username);
-    });
+    useEffect(() => {
+        getMessages(ownerId, uid).then((res) => {
+            setChat(res);
+        });
+        getUserWithId(uid).then((user) => {
+            setParticipant(user.username);
+        });
+    }, [payload, input]); //TODO check dependency input(too often update)
 
     const handleChange = (event) => {
         setInput(event.target.value);
@@ -29,12 +32,15 @@ function Message() {
         if (!input) {
             return;
         }
-        const payload = {
+        const data = {
             message: input,
-            createdAt: serverTimestamp(), //add timestamp
+            createdAt: Date.now(), //add timestamp
             ownerId: ownerId,
         };
-        addMessage(ownerId, uid, payload);
+
+        setPayload(data);
+
+        addMessage(ownerId, uid, data);
         setInput("");
     };
 

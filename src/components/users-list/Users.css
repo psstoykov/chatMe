@@ -1,13 +1,18 @@
 .users-list {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 20px;
+    background-color: grey;
+    max-width: max-content;
+    padding: 20px;
+    align-self: center;
 }
 .msg-btn {
     display: flex;
     gap: 10px;
     justify-content: space-evenly;
     color: white;
+    background-color: inherit;
     font-size: 2rem;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     max-width: fit-content;
@@ -15,4 +20,13 @@
 }
 .msg-btn:hover {
     background-color: #1877f2;
+}
+
+.user-list-title {
+    color: white;
+    align-self: center;
+}
+.user-list-field {
+    display: flex;
+    gap: 20px;
 }

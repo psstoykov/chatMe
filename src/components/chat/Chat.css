@@ -6,6 +6,7 @@
     font-size: 2rem;
     color: white;
     padding: 10px;
+    max-width: 60%;
 }
 
 .friend-chat-team {
@@ -16,4 +17,13 @@
     font-size: 2rem;
     color: white;
     padding: 10px;
+    max-width: 60%;
+}
+
+.date-stamp {
+    font-size: 0.8rem;
+    color: black;
+    text-align: end;
+    width: 100%;
+    opacity: 0.8;
 }

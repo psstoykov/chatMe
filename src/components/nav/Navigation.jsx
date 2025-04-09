@@ -10,6 +10,7 @@ function Navigation() {
             <nav>
                 <Link to="/users">Users</Link>
                 <Link to="/myPage">My Page</Link>
+                <Link to="/mymessages">My Messages</Link>
                 <Link
                     onClick={() => {
                         logout();

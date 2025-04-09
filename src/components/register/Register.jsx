@@ -50,7 +50,7 @@ function Register() {
 
         if (result) {
             setErrors(result.errorMessage);
-            console.log(result.errorMessage);
+
             return;
         }
 
