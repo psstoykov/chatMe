@@ -2,8 +2,9 @@ import { collection, doc, getDoc, getDocs, deleteDoc, addDoc, orderBy, query } f
 import { db } from "../firebase/firebaseConfig";
 export const getAllUsers = async () => {
     const users = [];
-    const querySnapshot = await getDocs(collection(db, 'users'));
-
+    // const querySnapshot = await getDocs(collection(db, 'users'));
+    const q = query(collection(db, 'users'), orderBy('username', 'asc'))
+    const querySnapshot = await getDocs(q)
     querySnapshot.forEach((doc) => {
 
         users.push(doc.data())
@@ -15,7 +16,6 @@ export const getMessages = async (uid, friendId) => {
 
     const messages = [];
 
-    // const querySnapshot = await getDocs((collection(db, 'users', uid, 'messages', friendId, 'content')));
     const q = query(collection(db, 'users', uid, 'messages', friendId, 'content'), orderBy('createdAt', 'desc'));
     const querySnapshot = await getDocs(q)
 

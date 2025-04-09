@@ -6,9 +6,8 @@ import { useState } from "react";
 import { useEffect } from "react";
 
 function Header() {
-    const [username, setUsername] = useState("guest");
-
     const user = useAuthContext();
+    const [username, setUsername] = useState("guest");
 
     useEffect(() => {
         user ? setUsername(user.displayName) : setUsername("guest");

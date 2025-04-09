@@ -9,6 +9,7 @@ export default function UserList() {
 
     useEffect(() => {
         getAllUsers().then((users) => {
+            users.sort((a, b) => a.username.localeCompare(b.username));
             setUsers(users);
         });
     }, []);

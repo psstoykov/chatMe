@@ -9,8 +9,6 @@ function Navigation() {
         return (
             <nav>
                 <Link to="/users">Users</Link>
-                <Link to="/messages">Messages</Link>
-
                 <Link to="/myPage">My Page</Link>
                 <Link
                     onClick={() => {
