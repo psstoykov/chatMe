@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./Users.css";
 import { useEffect } from "react";
-import { getAllUsers, getMyMessagesIds } from "../../services/data";
+import { getAllUsers } from "../../services/data";
 import { Link } from "react-router-dom";
 import { useAuthContext } from "../../contexts/authContext";
 import Follow from "../follow/Follow";

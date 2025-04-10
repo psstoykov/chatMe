@@ -3,7 +3,7 @@ import "./Message.css";
 import { useParams } from "react-router-dom";
 import { addMessage, getMessages, getUserWithId } from "../../services/data";
 import { useAuthContext } from "../../contexts/authContext";
-import { serverTimestamp } from "firebase/firestore";
+
 import Chat from "../chat/Chat";
 
 function Message() {

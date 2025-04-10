@@ -13,6 +13,7 @@ import { AuthRoute } from "./components/authRoute";
 import UserList from "./components/users-list/Users";
 
 import Message from "./components/message/Message";
+import FollowPage from "./components/follow-page/FollowPage";
 
 function App() {
     return (
@@ -53,6 +54,22 @@ function App() {
                         element={
                             <AuthRoute>
                                 <UserList />
+                            </AuthRoute>
+                        }
+                    />
+                    <Route
+                        path="myPage/:followType"
+                        element={
+                            <AuthRoute>
+                                <FollowPage />
+                            </AuthRoute>
+                        }
+                    />
+                    <Route
+                        path="myPage/:followType"
+                        element={
+                            <AuthRoute>
+                                <FollowPage />
                             </AuthRoute>
                         }
                     />
