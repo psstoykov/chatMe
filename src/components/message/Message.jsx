@@ -23,7 +23,7 @@ function Message() {
                 setParticipant(user.username);
             }
         });
-    }, [input]);
+    }, [ownerId, uid, user]);
 
     const handleChange = (event) => {
         setInput(event.target.value);
@@ -32,7 +32,6 @@ function Message() {
         event.preventDefault();
         const message = input.trim();
         if (!message) {
-            setParticipant(null);
             setInput("");
             return;
         }
@@ -43,43 +42,68 @@ function Message() {
         };
 
         addMessage(ownerId, uid, data);
+
         getMessages(ownerId, uid).then((res) => {
             setChat(res);
         });
+
         setInput("");
     };
-
-    return (
-        <>
-            <form className="msg-form" onSubmit={handleSubmit}>
-                <h2 className="msg-title">Texting with {participant}</h2>
-                <input
-                    type="text"
-                    name="input"
-                    onChange={handleChange}
-                    placeholder="new comment"
-                    value={input}
-                />
-
-                <button className="send-msg-btn" type="submit">
-                    Send
-                </button>
-            </form>
-
-            <ul className="msg-list">
-                {chat.map((res) => (
-                    <Chat
-                        friendId={uid}
-                        docId={res.docId}
-                        key={res.createdAt}
-                        sender={res.ownerId}
-                        message={res.message}
-                        createdAt={res.createdAt}
+    if (chat.length == 0) {
+        return (
+            <>
+                <form className="msg-form" onSubmit={handleSubmit}>
+                    <h2 className="msg-title">Texting with {participant}</h2>
+                    <input
+                        type="text"
+                        name="input"
+                        onChange={handleChange}
+                        placeholder="new comment"
+                        value={input}
                     />
-                ))}
-            </ul>
-        </>
-    );
-}
 
+                    <button className="send-msg-btn" type="submit">
+                        Send
+                    </button>
+                </form>
+
+                <ul className="msg-list">
+                    <li className="no-message">No messages yet</li>
+                </ul>
+            </>
+        );
+    } else {
+        return (
+            <>
+                <form className="msg-form" onSubmit={handleSubmit}>
+                    <h2 className="msg-title">Texting with {participant}</h2>
+                    <input
+                        type="text"
+                        name="input"
+                        onChange={handleChange}
+                        placeholder="new comment"
+                        value={input}
+                    />
+
+                    <button className="send-msg-btn" type="submit">
+                        Send
+                    </button>
+                </form>
+
+                <ul className="msg-list">
+                    {chat.map((res) => (
+                        <Chat
+                            friendId={uid}
+                            docId={res.docId}
+                            key={res.createdAt}
+                            sender={res.ownerId}
+                            message={res.message}
+                            createdAt={res.createdAt}
+                        />
+                    ))}
+                </ul>
+            </>
+        );
+    }
+}
 export default Message;

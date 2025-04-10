@@ -45,6 +45,7 @@ Application should now be running at http://localhost:5173/
 -   All messages are time stamped, so you always have a reference
 -   Chat is color coded for easy readability
 -   You can choose to follow or unfollow each individual user on the platform. This way you can make a selection of your most used contacts
+-   Users can delete their own messages
 
 ## My Page (logged-in users only)
 
