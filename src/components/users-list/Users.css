@@ -6,6 +6,7 @@
     width: max-content;
     padding: 20px;
     align-self: center;
+    border-radius: 20px;
 }
 .msg-btn {
     display: flex;

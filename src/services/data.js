@@ -45,9 +45,11 @@ export const getMessages = async (uid, friendId) => {
 }
 
 export const addMessage = async (ownerId, friendId, payload) => {
-
-    await addDoc(collection(db, "users", ownerId, "messages", friendId, "content"), payload)
-    await addDoc(collection(db, "users", friendId, "messages", ownerId, "content"), payload) //make a second record for the receiving party
+    let id = '';
+    await addDoc(collection(db, "users", ownerId, "messages", friendId, "content"), payload).then((res) => {
+        id = res.id
+    })
+    await setDoc(doc(db, "users", friendId, "messages", ownerId, "content", id), payload)
 
 }
 
@@ -104,4 +106,5 @@ export const getFollowStats = async (uid, follow) => {
 export const deleteMessage = async (uid, friendId, docId) => {
 
     await deleteDoc(doc(db, 'users', uid, 'messages', friendId, 'content', docId))
+    await deleteDoc(doc(db, 'users', friendId, 'messages', uid, 'content', docId))
 }

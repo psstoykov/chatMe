@@ -6,7 +6,7 @@ import { removeAccountFromDb } from "./data";
 let errors = null;
 
 export const register = (email, password, username) => {
-    //TODO fix this stuff
+
     createUserWithEmailAndPassword(auth, email, password).then(async (UserCredential) => {
         const user = UserCredential.user;
         //set username at register

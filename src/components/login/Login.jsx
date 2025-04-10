@@ -10,7 +10,7 @@ function Login() {
         password: "",
     };
     const [inputs, setInputs] = useState(initialValues);
-    // const [isSigInActive, setIsSignInActive] = useState(true);
+
     const [errors, setErrors] = useState(null);
 
     const handleChange = (event) => {
@@ -20,8 +20,8 @@ function Login() {
     };
 
     const handleSubmit = async (event) => {
-        setErrors(null);
         event.preventDefault();
+        setErrors(null);
         if (!inputs.email || !inputs.password) {
             return setErrors("All fields are required");
         }
@@ -32,7 +32,7 @@ function Login() {
             setErrors(result.errorMessage);
             return;
         }
-        // setIsSignInActive(false);
+
         setInputs(initialValues);
         navigate("/");
     };

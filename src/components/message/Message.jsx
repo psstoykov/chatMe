@@ -13,7 +13,6 @@ function Message() {
     const [participant, setParticipant] = useState(null);
     const [input, setInput] = useState("");
     const [chat, setChat] = useState([]);
-    const [payload, setPayload] = useState({});
 
     useEffect(() => {
         getMessages(ownerId, uid).then((res) => {
@@ -24,7 +23,7 @@ function Message() {
                 setParticipant(user.username);
             }
         });
-    }, [payload, ownerId]);
+    }, [input]);
 
     const handleChange = (event) => {
         setInput(event.target.value);
@@ -33,6 +32,7 @@ function Message() {
         event.preventDefault();
         const message = input.trim();
         if (!message) {
+            setParticipant(null);
             setInput("");
             return;
         }
@@ -42,9 +42,10 @@ function Message() {
             ownerId: ownerId,
         };
 
-        setPayload(data);
-
         addMessage(ownerId, uid, data);
+        getMessages(ownerId, uid).then((res) => {
+            setChat(res);
+        });
         setInput("");
     };
 
