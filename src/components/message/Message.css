@@ -40,3 +40,15 @@
 .no-current-messages {
     color: white;
 }
+
+.delete-msg {
+    background-color: rgb(101, 101, 101);
+    border: none;
+    color: white;
+    padding: 5px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+.delete-msg:hover {
+    background-color: red;
+}

@@ -36,7 +36,10 @@ export const getMessages = async (uid, friendId) => {
     const querySnapshot = await getDocs(q)
 
     querySnapshot.forEach((doc) => {
-        messages.push(doc.data())
+        const result = doc.data()
+        result.docId = doc.id
+
+        messages.push(result)
     })
     return messages;
 }
@@ -96,4 +99,9 @@ export const getFollowStats = async (uid, follow) => {
         result.push(doc.data());
     })
     return result
+}
+
+export const deleteMessage = async (uid, friendId, docId) => {
+
+    await deleteDoc(doc(db, 'users', uid, 'messages', friendId, 'content', docId))
 }

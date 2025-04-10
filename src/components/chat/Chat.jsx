@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import { useAuthContext } from "../../contexts/authContext";
 import "./Chat.css";
+import { deleteMessage } from "../../services/data";
 
-const Chat = ({ sender, message, createdAt }) => {
+const Chat = ({ docId, sender, message, createdAt }) => {
     //TODO fix infinite loop
     const user = useAuthContext();
     const userId = user.uid;
@@ -11,6 +12,9 @@ const Chat = ({ sender, message, createdAt }) => {
     const [chat, setChat] = useState("");
     const [date, setDate] = useState(null);
 
+    const deleteMsg = () => {
+        deleteMessage(userId, sender, docId);
+    };
     useEffect(() => {
         setSenderId(sender);
         setChat(message);
@@ -23,19 +27,22 @@ const Chat = ({ sender, message, createdAt }) => {
     if (senderId == userId) {
         return (
             <>
-                <li className="owner-chat-theme">
+                <div className="owner-chat-theme">
                     {chat}
                     <p className="date-stamp">{date.toString()}</p>
-                </li>
+                    <button className="delete-msg" onClick={deleteMsg}>
+                        delete
+                    </button>
+                </div>
             </>
         );
     }
     return (
         <>
-            <li className="friend-chat-theme">
+            <div className="friend-chat-theme">
                 {chat}
                 <p className="date-stamp">{date.toString()}</p>
-            </li>
+            </div>
         </>
     );
 };

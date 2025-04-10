@@ -20,20 +20,24 @@ function Message() {
             setChat(res);
         });
         getUserWithId(uid).then((user) => {
-            setParticipant(user.username);
+            if (user) {
+                setParticipant(user.username);
+            }
         });
-    }, [payload, input]); //TODO check dependency input(too often update)
+    }, [payload, ownerId]); //input
 
     const handleChange = (event) => {
         setInput(event.target.value);
     };
     const handleSubmit = (event) => {
         event.preventDefault();
-        if (!input) {
+        const message = input.trim();
+        if (!message) {
+            setInput("");
             return;
         }
         const data = {
-            message: input,
+            message: message,
             createdAt: Date.now(), //add timestamp
             ownerId: ownerId,
         };
@@ -64,6 +68,7 @@ function Message() {
             <ul className="msg-list">
                 {chat.map((res) => (
                     <Chat
+                        docId={res.docId}
                         key={res.createdAt}
                         sender={res.ownerId}
                         message={res.message}
