@@ -2,11 +2,11 @@ import { useEffect, useState } from "react";
 import "./Follow.css";
 import { followById, getFollowerById, unfollowById } from "../../services/data";
 
-const Follow = ({ friendId, uid }) => {
+const Follow = ({ friendId, uid, username, friendUsername }) => {
     const [isFollower, setIsFollower] = useState(null);
 
     const submitFollow = () => {
-        followById(uid, friendId);
+        followById(uid, friendId, username, friendUsername);
         setIsFollower(true);
     };
 

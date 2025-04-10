@@ -10,6 +10,7 @@ export default function UserList() {
     const [users, setUsers] = useState([]);
     const user = useAuthContext();
     const uid = user.uid;
+    const username = user.displayName;
 
     useEffect(() => {
         getAllUsers().then((users) => {
@@ -29,7 +30,12 @@ export default function UserList() {
                         <Link to={"/message/" + user.uid} className="msg-btn">
                             {user.username}
                         </Link>
-                        <Follow friendId={user.uid} uid={uid} />
+                        <Follow
+                            friendId={user.uid}
+                            uid={uid}
+                            username={username}
+                            friendUsername={user.username}
+                        />
                     </div>
                 ))}
             </div>

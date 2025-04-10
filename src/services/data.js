@@ -77,9 +77,9 @@ export const getFollowerById = async (uid, friendId) => {
     }
 }
 
-export const followById = async (uid, friendId) => {
-    await setDoc(doc(db, 'users', uid, 'following', friendId), { createdAt: Date.now(), uid: friendId })
-    await setDoc(doc(db, 'users', friendId, 'followers', uid), { createdAt: Date.now(), uid: uid })
+export const followById = async (uid, friendId, username, friendUsername) => {
+    await setDoc(doc(db, 'users', uid, 'following', friendId), { createdAt: Date.now(), uid: friendId, username: friendUsername })
+    await setDoc(doc(db, 'users', friendId, 'followers', uid), { createdAt: Date.now(), uid: uid, username: username })
 
 }
 
