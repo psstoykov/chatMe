@@ -3,7 +3,7 @@
     flex-direction: column;
     gap: 20px;
     background-color: grey;
-    max-width: max-content;
+    width: max-content;
     padding: 20px;
     align-self: center;
 }
@@ -30,4 +30,5 @@
 .user-list-field {
     display: flex;
     gap: 20px;
+    justify-content: space-between;
 }

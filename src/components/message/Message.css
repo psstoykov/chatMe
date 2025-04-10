@@ -16,23 +16,27 @@
 .new-message {
     align-self: center;
     height: max-content;
-    width: 30%;
 }
 .msg-list {
+    margin: 0 auto;
     display: flex;
     flex-direction: column;
     gap: 10px;
-}
-.current-chat {
     align-self: center;
-    width: 30%;
-    border-radius: 20px;
     padding: 20px;
     box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
         rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
         rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+    border-radius: 20px;
+    width: max-content;
 }
 
 .msg-form {
+    margin: 0 auto;
     border-radius: 20px;
+    width: max-content;
+    align-self: center;
+}
+.no-current-messages {
+    color: white;
 }

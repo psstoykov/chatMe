@@ -1,12 +1,13 @@
 .user-container {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: space-between;
     background-color: grey;
     padding: 20px;
-    width: 80%;
+    width: max-content;
     align-self: center;
     border-radius: 20px;
+    gap: 20px;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 .account-settings {

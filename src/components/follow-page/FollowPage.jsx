@@ -3,7 +3,7 @@ import "./FollowPage.css";
 import { useState } from "react";
 import { useEffect } from "react";
 import { useAuthContext } from "../../contexts/authContext";
-import { getFollowStats, getUserWithId } from "../../services/data";
+import { getFollowStats } from "../../services/data";
 
 const FollowPage = () => {
     const { followType } = useParams();

@@ -22,4 +22,5 @@ body {
     flex-direction: column;
     gap: 50px;
     height: max-content;
+    width: 100%;
 }

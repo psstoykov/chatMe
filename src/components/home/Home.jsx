@@ -13,9 +13,7 @@ const Home = () => {
                 <span className="homepage-message">
                     Access your personal page
                 </span>
-                <span className="homepage-message">
-                    Browse your current messages
-                </span>
+                <span className="homepage-message">Follow your friends</span>
             </div>
         </>
     );

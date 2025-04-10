@@ -8,7 +8,7 @@ const Chat = ({ sender, message, createdAt }) => {
     const userId = user.uid;
 
     const [senderId, setSenderId] = useState(null);
-    const [chat, setChat] = useState(null);
+    const [chat, setChat] = useState("");
     const [date, setDate] = useState(null);
 
     useEffect(() => {
@@ -17,6 +17,9 @@ const Chat = ({ sender, message, createdAt }) => {
         setDate(new Date(createdAt));
     }, [message]);
 
+    if (!chat) {
+        return;
+    }
     if (senderId == userId) {
         return (
             <>
@@ -26,19 +29,15 @@ const Chat = ({ sender, message, createdAt }) => {
                 </li>
             </>
         );
-    } else if (!chat) {
-        return (
-            <>
-                <li>No messages yet</li>
-            </>
-        );
-    } else {
-        return (
-            <>
-                <li className="friend-chat-team">{chat}</li>
-            </>
-        );
     }
+    return (
+        <>
+            <li className="friend-chat-theme">
+                {chat}
+                <p className="date-stamp">{date.toString()}</p>
+            </li>
+        </>
+    );
 };
 
 export default Chat;

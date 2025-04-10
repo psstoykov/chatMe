@@ -9,7 +9,7 @@
     max-width: 60%;
 }
 
-.friend-chat-team {
+.friend-chat-theme {
     background-color: #303030;
     border: none;
     border-radius: 20px;
@@ -22,7 +22,7 @@
 
 .date-stamp {
     font-size: 0.8rem;
-    color: black;
+    color: white;
     text-align: end;
     width: 100%;
     opacity: 0.8;
