@@ -3,7 +3,7 @@ import { useAuthContext } from "../../contexts/authContext";
 import "./Chat.css";
 import { deleteMessage } from "../../services/data";
 
-const Chat = ({ docId, sender, message, createdAt }) => {
+const Chat = ({ friendId, docId, sender, message, createdAt }) => {
     //TODO fix infinite loop
     const user = useAuthContext();
     const userId = user.uid;
@@ -11,9 +11,10 @@ const Chat = ({ docId, sender, message, createdAt }) => {
     const [senderId, setSenderId] = useState(null);
     const [chat, setChat] = useState("");
     const [date, setDate] = useState(null);
-
+    console.log(userId, sender, docId);
     const deleteMsg = () => {
-        deleteMessage(userId, sender, docId);
+        deleteMessage(userId, friendId, docId);
+        setChat("");
     };
     useEffect(() => {
         setSenderId(sender);

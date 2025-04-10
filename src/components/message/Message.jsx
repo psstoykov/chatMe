@@ -24,7 +24,7 @@ function Message() {
                 setParticipant(user.username);
             }
         });
-    }, [payload, ownerId]); //input
+    }, [payload, ownerId]);
 
     const handleChange = (event) => {
         setInput(event.target.value);
@@ -68,6 +68,7 @@ function Message() {
             <ul className="msg-list">
                 {chat.map((res) => (
                     <Chat
+                        friendId={uid}
                         docId={res.docId}
                         key={res.createdAt}
                         sender={res.ownerId}
