@@ -13,11 +13,16 @@ function Message() {
     const [participant, setParticipant] = useState(null);
     const [input, setInput] = useState("");
     const [chat, setChat] = useState([]);
-
-    useEffect(() => {
+    const triggerFunc = () => {
         getMessages(ownerId, uid).then((res) => {
             setChat(res);
+            setTimeout(() => {
+                triggerFunc();
+            }, 2000);
         });
+    };
+    useEffect(() => {
+        triggerFunc();
         getUserWithId(uid).then((user) => {
             if (user) {
                 setParticipant(user.username);
