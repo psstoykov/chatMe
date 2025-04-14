@@ -13,10 +13,11 @@ function Message() {
     const [participant, setParticipant] = useState(null);
     const [input, setInput] = useState("");
     const [chat, setChat] = useState([]);
+    let intervalTrigger;
     const triggerFunc = () => {
         getMessages(ownerId, uid).then((res) => {
             setChat(res);
-            setTimeout(() => {
+            intervalTrigger = setTimeout(() => {
                 triggerFunc();
             }, 2000);
         });
@@ -28,6 +29,7 @@ function Message() {
                 setParticipant(user.username);
             }
         });
+        return () => clearTimeout(intervalTrigger);
     }, [ownerId, uid, user]);
 
     const handleChange = (event) => {
@@ -63,7 +65,7 @@ function Message() {
                         type="text"
                         name="input"
                         onChange={handleChange}
-                        placeholder="new comment"
+                        placeholder="new message"
                         value={input}
                     />
 

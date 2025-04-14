@@ -9,25 +9,17 @@ import { getAuth, GoogleAuthProvider } from "firebase/auth";
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 
-// const firebaseConfig = {
-//     apiKey: import.meta.env.VITE_REACT_APP_API_KEY,
-//     authDomain: import.meta.env.VITE_REACT_APP_AUTH_DOMAIN,
-//     projectId: import.meta.env.VITE_REACT_APP_PROJECT_ID,
-//     storageBucket: import.meta.env.VITE_REACT_APP_STORAGE_BUCKET,
-//     messagingSenderId: import.meta.env.VITE_REACT_APP_MESSAGING_SENDER_ID,
-//     appId: import.meta.env.VITE_REACT_APP_APP_ID,
-//     measurementId: import.meta.env.VITE_REACT_APP_MEASUREMENT_ID
-// };
-
 const firebaseConfig = {
-    apiKey: "AIzaSyDEg2IYcLq_fVJIXhY6cb2rCi_B-OwoZPU",
-    authDomain: "reactjs-c8cf4.firebaseapp.com",
-    projectId: "reactjs-c8cf4",
-    storageBucket: "reactjs-c8cf4.firebasestorage.app",
-    messagingSenderId: "216786524055",
-    appId: "1:216786524055:web:2df9dce74668a2d29a96d2",
-    measurementId: "G-931DTFJZND"
+    apiKey: import.meta.env.VITE_REACT_APP_API_KEY,
+    authDomain: import.meta.env.VITE_REACT_APP_AUTH_DOMAIN,
+    projectId: import.meta.env.VITE_REACT_APP_PROJECT_ID,
+    storageBucket: import.meta.env.VITE_REACT_APP_STORAGE_BUCKET,
+    messagingSenderId: import.meta.env.VITE_REACT_APP_MESSAGING_SENDER_ID,
+    appId: import.meta.env.VITE_REACT_APP_APP_ID,
+    measurementId: import.meta.env.VITE_REACT_APP_MEASUREMENT_ID
 };
+
+
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
